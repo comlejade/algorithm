@@ -7,7 +7,8 @@ public class LinearSearch {
   public static <E> int search(E[] source, E target) {
     int index = -1;
     for (int i = 0; i < source.length; i++) {
-      if (source[i] == target) {
+      // if (source[i] == target) {
+      if(source[i].equals(target)) {
         index = i;
       }
     }
@@ -21,5 +22,11 @@ public class LinearSearch {
 
     int i = LinearSearch.search(data, 666);
     System.out.println(i);
+
+    Student[] students = {new Student("aa"), new Student("bb"), new Student("cc")};
+    Student bb = new Student("bb");
+
+    int idx = LinearSearch.search(students, bb);
+    System.out.println(idx);
   }
 }
