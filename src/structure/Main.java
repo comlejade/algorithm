@@ -1,10 +1,12 @@
 package src.structure;
 
+// import src.sample.Student;
+
 public class Main {
   public static void main(String[] args) {
-    Array arr = new Array(20);
+    Array<Integer> arr = new Array<>(10);
     for (int i = 0; i < 10; i++) {
-      arr.addList(i);
+      arr.addLast(i);
     }
     System.out.println(arr);
 
@@ -25,5 +27,11 @@ public class Main {
 
     arr.removeLast();
     System.out.println(arr);
+
+    // Array<Student> students = new Array<>();
+    // students.addList(new Student("aa", 80));
+    // students.addList(new Student("bb", 89));
+    // students.addList(new Student("cc", 100));
+    // System.out.println(students);
   }
 }

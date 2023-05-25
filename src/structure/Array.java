@@ -48,7 +48,7 @@ public class Array<T> {
    * 向末位添加
    * @param e
    */
-  public void addList(T e) {
+  public void addLast(T e) {
     add(size, e);
   }
 
@@ -66,13 +66,21 @@ public class Array<T> {
    * @param e
    */
   public void add(int index, T e) {
-    if (size == data.length) {
-      throw new IllegalArgumentException("Add failed. Array is full.");
-    }
+    // if (size == data.length) {
+    //   throw new IllegalArgumentException("Add failed. Array is full.");
+    // }
     if (index < 0 || index > size) {
       // 数组可能会出现不连续
       throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= " + size + ".");
     }
+
+    if (size == data.length) {
+      System.out.println("数组size: " + size);
+      System.out.println("数组扩容: " + 2 * data.length);
+      // 数组扩容
+      resize(2 * data.length);
+    }
+
     for (int i = size - 1; i >= index; i--) {
       data[i + 1] = data[i];
     }
@@ -146,6 +154,12 @@ public class Array<T> {
       data[i] = data[i + 1];
     }
     size--;
+    data[size] = null; // 非必要， loitering objects != memory leak
+
+    // Lazy 解决复杂度的震荡问题
+    if (size == data.length / 4 && data.length != 0) {
+      resize(data.length / 2);
+    }
     return t;
   }
 
@@ -155,6 +169,14 @@ public class Array<T> {
 
   public T removeLast() {
     return remove(size - 1);
+  }
+
+  public T getLast() {
+    return get(size -1);
+  }
+
+  public T getFirst() {
+    return get(0);
   }
 
   /**
@@ -181,5 +203,13 @@ public class Array<T> {
     }
     res.append("]");
     return res.toString();
+  }
+
+  private void resize(int newCapacity) {
+    T[] newData = (T[]) new Object[newCapacity];
+    for (int i = 0; i < size; i++) {
+      newData[i] = data[i];
+    }
+    data = newData;
   }
 }
