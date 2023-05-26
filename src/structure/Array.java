@@ -41,7 +41,7 @@ public class Array<T> {
    * @return
    */
   public boolean isEmpty() {
-    return data.length == 0;
+    return size == 0;
   }
 
   /**
@@ -75,8 +75,8 @@ public class Array<T> {
     }
 
     if (size == data.length) {
-      System.out.println("数组size: " + size);
-      System.out.println("数组扩容: " + 2 * data.length);
+      // System.out.println("数组size: " + size);
+      // System.out.println("数组扩容: " + 2 * data.length);
       // 数组扩容
       resize(2 * data.length);
     }
