@@ -1,6 +1,6 @@
-package src.sample;
+package sample;
 
-import src.ArrayGenerator;
+import utils.ArrayGenerator;
 
 public class LinearSearch {
   // 外部的类不能使用此类创建新的实例，只能调用静态方法

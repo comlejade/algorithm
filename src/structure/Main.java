@@ -1,8 +1,6 @@
-package src.structure;
+package structure;
 
 import java.util.Random;
-
-// import src.sample.Student;
 
 public class Main {
 

@@ -1,4 +1,4 @@
-package src.structure;
+package structure;
 
 public class LinkedListQueue<E> implements Queue<E> {
   private class Node {

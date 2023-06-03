@@ -1,4 +1,4 @@
-package src.sample;
+package sample;
 
 public class Student implements Comparable<Student> {
   private String name;

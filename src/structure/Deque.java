@@ -1,4 +1,4 @@
-package src.structure;
+package structure;
 
 public class Deque<E> {
   private E[] data;

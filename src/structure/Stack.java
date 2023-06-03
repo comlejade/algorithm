@@ -1,4 +1,4 @@
-package src.structure;
+package structure;
 
 public interface Stack<T> {
   int getSize();

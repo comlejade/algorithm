@@ -1,4 +1,4 @@
-package src.structure;
+package structure;
 
 public class LinkedListStack<E> implements Stack<E> {
   private LinkedList<E> list;

@@ -1,4 +1,4 @@
-package src.structure;
+package structure;
 
 public class ArrayQueue<E> implements Queue<E> {
   private Array<E> array;

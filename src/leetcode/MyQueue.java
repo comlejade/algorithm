@@ -1,4 +1,4 @@
-package src.structure;
+package leetcode;
 
 import java.util.Stack;
 

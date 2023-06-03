@@ -1,4 +1,4 @@
-package src.structure;
+package structure;
 
 public class Array<T> {
   private T[] data;

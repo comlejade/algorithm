@@ -1,4 +1,4 @@
-package src.structure;
+package structure;
 
 public class LoopQueue3<E> implements Queue<E> {
   private E[] data;

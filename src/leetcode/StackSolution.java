@@ -1,4 +1,6 @@
-package src.structure;
+package leetcode;
+
+import structure.ArrayStack;
 
 // import java.util.Stack;
 

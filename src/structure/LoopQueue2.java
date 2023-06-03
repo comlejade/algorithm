@@ -1,4 +1,4 @@
-package src.structure;
+package structure;
 
 // 使用size，不浪费一个空间
 

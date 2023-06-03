@@ -1,7 +1,7 @@
-package src.sample;
+package sample;
 
-import src.ArrayGenerator;
-import src.SortingHelper;
+import utils.ArrayGenerator;
+import utils.SortingHelper;
 
 public class SelectionReverseSort {
   private SelectionReverseSort() {}

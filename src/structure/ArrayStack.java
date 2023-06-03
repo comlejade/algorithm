@@ -1,4 +1,4 @@
-package src.structure;
+package structure;
 
 public class ArrayStack<T> implements Stack<T> {
   Array<T> array;
