@@ -1,5 +1,7 @@
 package recursion;
 
+import javafx.util.Pair;
+
 public class LinkedList<E> {
     private class Node {
         public E e;
@@ -94,11 +96,75 @@ public class LinkedList<E> {
             throw new IllegalArgumentException("index Illegal.");
         }
 
-        return remove(head, index);
+        Pair<Node, E> res = remove(head, index);
+        size--;
+        head = res.getKey();
+        return res.getValue();
     }
 
-    private E remove(Node node, int index) {
+    private Pair<Node, E> remove(Node node, int index) {
+        if (index == 0) {
+            return new Pair<>(node.next, node.e);
+        }
+        Pair<Node, E> res = remove(node.next, index - 1);
+        node.next = res.getKey();
+        return new Pair<>(node, res.getValue());
+    }
 
+    public E removeFirst() {
+        return remove(0);
+    }
+
+    public E removeLast() {
+        return remove(size - 1);
+    }
+
+    public void set(int index, E e) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("index Illegal.");
+        }
+        set(head, index, e);
+    }
+
+    private void set(Node node, int index, E e) {
+        if (index == 0) {
+            node.e = e;
+            return;
+        }
+        set(node, index - 1, e);
+    }
+
+    public boolean contains(E e) {
+        return contains(head, e);
+    }
+
+    private boolean contains(Node node, E e) {
+        if (node == null) {
+            return false;
+        }
+        if (node.e.equals(e)) {
+            return true;
+        }
+        return contains(node.next, e);
+    }
+
+    public void removeElement(E e) {
+        head = removeElement(head, e);
+    }
+
+    private Node removeElement(Node node, E e) {
+        if (node == null) {
+            return null;
+        }
+
+        node.next = removeElement(node.next, e);
+
+        if (node.e.equals(e)) {
+            size--;
+            return node.next;
+        }
+
+        return node;
     }
 
     @Override
@@ -120,6 +186,10 @@ public class LinkedList<E> {
         for (int i = 0; i < 5; i++) {
             linkedList.add(i, i);
             System.out.println(linkedList);
+        }
+
+        while (!linkedList.isEmpty()) {
+            System.out.println("removed " + linkedList.removeLast());
         }
     }
 
