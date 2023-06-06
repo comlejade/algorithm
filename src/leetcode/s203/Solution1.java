@@ -1,5 +1,7 @@
 package leetcode.s203;
 
+import leetcode.ListNode;
+
 public class Solution1 {
   public ListNode removeElements(ListNode head, int val) {
     // 不使用头部虚拟节点

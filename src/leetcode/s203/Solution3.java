@@ -1,5 +1,7 @@
 package leetcode.s203;
 
+import leetcode.ListNode;
+
 public class Solution3 {
   public ListNode removeElements(ListNode head, int val, int depth) {
     String depthString = generateDepthString(depth);
