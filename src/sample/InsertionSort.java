@@ -18,13 +18,21 @@ public class InsertionSort {
   }
 
   public static void main(String[] args) {
-    int[] dataSize = {10000, 100000};
-    for (int n : dataSize) {
-      Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
-      SortingHelper.sortTest(InsertionSort.class.getName(), arr);
+//    int[] dataSize = {10000, 100000};
+//    for (int n : dataSize) {
+//      Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
+//      SortingHelper.sortTest(InsertionSort.class.getName(), arr);
 
       // Integer[] arr2 = ArrayGenerator.generateOrderedArray(n);
       // SortingHelper.sortTest(InsertionSort.class.getName(), arr2);
+//    }
+    Integer[] arr = {1,5,6,3,2,4,9,8,7};
+    InsertionSort.sort(arr);
+    for (int i = 0; i < arr.length; i++) {
+      System.out.print(arr[i]);
+      if (i < arr.length - 1) {
+        System.out.print(", ");
+      }
     }
   }
 }
