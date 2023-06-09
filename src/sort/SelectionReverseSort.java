@@ -1,4 +1,4 @@
-package sample;
+package sort;
 
 import utils.ArrayGenerator;
 import utils.SortingHelper;

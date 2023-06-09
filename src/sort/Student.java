@@ -1,4 +1,4 @@
-package sample;
+package sort;
 
 public class Student implements Comparable<Student> {
   private String name;

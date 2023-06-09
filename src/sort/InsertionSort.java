@@ -1,7 +1,4 @@
-package sample;
-
-import utils.ArrayGenerator;
-import utils.SortingHelper;
+package sort;
 
 public class InsertionSort {
   private InsertionSort() {}

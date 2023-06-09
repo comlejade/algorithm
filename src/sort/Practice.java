@@ -1,4 +1,4 @@
-package sample;
+package sort;
 
 public class Practice {
     private Practice() {}
