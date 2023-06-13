@@ -3,6 +3,9 @@ package sort;
 import utils.ArrayGenerator;
 import utils.SortingHelper;
 
+/**
+ * 选择排序的时间复杂度是O(n^2)
+ */
 public class SelectionSort {
   private SelectionSort() {}
 

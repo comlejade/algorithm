@@ -1,5 +1,9 @@
 package sort;
 
+/**
+ * 插入排序的总体时间复杂度是O(n^2)
+ * 对完全有序的数组是O(n)
+ */
 public class InsertionSort {
   private InsertionSort() {}
 
@@ -8,6 +12,18 @@ public class InsertionSort {
       E t = arr[i];
       int j = 0;
       for (j = i; j - 1 >= 0 && t.compareTo(arr[j - 1]) < 0; j--) {
+        arr[j] = arr[j - 1];
+      }
+      arr[j] = t;
+    }
+  }
+
+  public static <E extends Comparable<E>> void sort(E[] arr, int l, int r) {
+
+    for (int i = l; i <= r; i++) {
+      E t = arr[i];
+      int j;
+      for (j = i; j - 1 >= l && t.compareTo(arr[j - 1]) < 0; j--) {
         arr[j] = arr[j - 1];
       }
       arr[j] = t;

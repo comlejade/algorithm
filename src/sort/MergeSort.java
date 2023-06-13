@@ -5,24 +5,43 @@ import utils.SortingHelper;
 
 import java.util.Arrays;
 
+/**
+ * 归并排序整体的时间复杂度是O(n * logn)
+ * 对于完全有序的数组，复杂度是O(n)
+ */
 public class MergeSort {
     private MergeSort() {}
 
     public static <E extends Comparable<E>> void sort(E[] arr) {
-        sort(arr, 0, arr.length - 1);
+        E[] temp = Arrays.copyOf(arr, arr.length);
+        sort(arr, 0, arr.length - 1, temp);
     }
 
-    private static <E extends Comparable<E>> void sort(E[] arr, int l, int r) {
+    private static <E extends Comparable<E>> void sort(E[] arr, int l, int r, E[] temp) {
+//        System.out.println("对" + Arrays.toString(Arrays.copyOfRange(arr, l, r)) + "进行排序, " + "l=" + l + ",r=" + r);
         if (l >= r) return;
+        // 当元素个数较小的时候，转而使用插入排序
+        // 对于高级语言，如脚本语言js等，这里的优化反而可能耗时更长
+//        if (r - l <= 15) {
+//            InsertionSort.sort(arr, l, r);
+//            return;
+//        }
+
         // 防止溢出
         int mid = l + (r - l) / 2;
-        sort(arr, l, mid);
-        sort(arr, mid + 1, r);
-        merge(arr, l, mid, r);
+        sort(arr, l, mid, temp);
+        sort(arr, mid + 1, r, temp);
+        // 这里归并是对两个有序的区间进行合并，如果 arr[mid] < arr[mid + 1], 说明这个区间本身是有序的，不用再归并
+        if (arr[mid].compareTo(arr[mid + 1]) > 0) {
+            merge(arr, l, mid, r, temp);
+        }
     }
 
-    private static <E extends Comparable<E>> void merge(E[] arr, int l, int mid, int r) {
-        E[] temp = Arrays.copyOfRange(arr, l, r + 1);
+    // 合并两个有序的区间 arr[l, mid] 和 arr[mid + 1, r]
+    private static <E extends Comparable<E>> void merge(E[] arr, int l, int mid, int r, E[] temp) {
+//        System.out.println("对" + Arrays.toString(Arrays.copyOfRange(arr, l, r)) + "进行归并, " + "l=" + l + ",mid=" + mid + ",r=" + r);
+//        E[] temp = Arrays.copyOfRange(arr, l, r + 1);
+        System.arraycopy(arr, l, temp, l, r - l + 1);
         int i = l; int j = mid + 1;
         for (int k = l; k <= r; k++) {
             if (i > mid) {
@@ -35,11 +54,17 @@ public class MergeSort {
                 arr[k] = temp[j - l]; j++;
             }
         }
+//        System.out.println("对" + Arrays.toString(Arrays.copyOfRange(arr, l, r)) + "进行归并后: " + Arrays.toString(Arrays.copyOfRange(arr, l, r)));
     }
 
+
+
     public static void main(String[] args) {
-        int n = 100000;
+        int n = 10000000;
         Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
+//        Integer[] arr2 = Arrays.copyOf(arr, arr.length);
+
+//        SortingHelper.sortTest(MergeSort2.class.getName(), arr);
         SortingHelper.sortTest(MergeSort.class.getName(), arr);
     }
 }
