@@ -26,7 +26,7 @@ public class SortingHelper {
       if (!SortingHelper.isSorted(arr)) {
         throw new RuntimeException(className + " failed");
       }
-      System.out.println(String.format("%s, n = %d : %f s", className, arr.length, time));
+      System.out.printf("%s, n = %d : %f s%n", className, arr.length, time);
     } catch (Exception e) {
       e.printStackTrace();
     }
