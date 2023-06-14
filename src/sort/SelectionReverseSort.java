@@ -28,7 +28,7 @@ public class SelectionReverseSort {
     int[] dataSize = {10000, 100000};
     for (int n : dataSize) {
       Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
-      SortingHelper.sortTest(SelectionReverseSort.class.getName(), arr);
+      SortingHelper.sortTest(SelectionReverseSort.class.getName(), "sort", arr);
     }
     // Integer[] arr = {2,4,3,1,6,5};
     // SelectionReverseSort.sort(arr);

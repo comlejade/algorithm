@@ -13,10 +13,10 @@ public class SortingHelper {
     return true;
   }
   
-  public static <E extends Comparable<E>> void sortTest(String className, E[] arr) {
+  public static <E extends Comparable<E>> void sortTest(String className, String method, E[] arr) {
     try {
       Class<?> sortClass = Class.forName(className);
-      Method sortMethod = sortClass.getMethod("sort", Comparable[].class);
+      Method sortMethod = sortClass.getMethod(method, Comparable[].class);
       long startTime = System.nanoTime();
       sortMethod.invoke(null, new Object[]{arr});
       long endTime = System.nanoTime();

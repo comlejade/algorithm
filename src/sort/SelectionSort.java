@@ -34,7 +34,7 @@ public class SelectionSort {
     int[] dataSize = {10000, 100000};
     for (int n : dataSize) {
       Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
-      SortingHelper.sortTest(SelectionSort.class.getName(), arr);
+      SortingHelper.sortTest(SelectionSort.class.getName(), "sort", arr);
     }
     // long startTime = System.nanoTime();
     // SelectionSort.sort(arr);
