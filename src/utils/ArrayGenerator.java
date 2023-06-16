@@ -22,4 +22,39 @@ public class ArrayGenerator {
     }
     return arr;
   }
+
+  public static Integer[] generateSpecialArray(int n) {
+    Integer[] arr = new Integer[n];
+    // 生成 arr[0...n-1]的测试用例，其中最小值是0
+    generateSpecialArray(arr, 0, arr.length - 1, 0);
+    return arr;
+  }
+
+  public static void generateSpecialArray(Integer[] arr, int l, int r, int value) {
+    // 递归到底，如果l > r，要处理的区间是空，直接返回
+    if (l > r) return;
+
+    // 把最小值放中间
+    int mid = (l + r) / 2;
+    arr[mid] = value;
+
+    // 模拟partition的过程，把中间元素和最左边元素交换位置
+    swap(arr, l, mid);
+
+    // 处理除了最左边的元素以外，剩下的n-1个元素
+    generateSpecialArray(arr, l + 1, r, value + 1);
+
+    // 处理好之后，还要把中间元素和最左边的元素交换回来
+    swap(arr, l, mid);
+  }
+
+  private static <E> void swap(E[] arr, int i, int j) {
+    E temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+
+  public static void main(String[] args) {
+    generateSpecialArray(10);
+  }
 }
