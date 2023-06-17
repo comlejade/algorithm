@@ -1,4 +1,5 @@
-package sort;
+package search;
+
 
 import utils.ArrayGenerator;
 
