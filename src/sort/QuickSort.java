@@ -59,6 +59,8 @@ public class QuickSort {
         return j;
     }
 
+    // 两路快速排序
+    // 适合数组中重复元素较少的数组
     public static <E extends Comparable<E>> void sort2ways(E[] arr) {
         Random random = new Random();
         sort2ways(arr, 0, arr.length - 1, random);
@@ -113,6 +115,49 @@ public class QuickSort {
         return j;
     }
 
+    // 三路快速排序
+    // 适合有大量重复元素的数组
+    public static <E extends Comparable<E>> void sort3ways(E[] arr) {
+        Random random = new Random();
+        sort3ways(arr, 0, arr.length - 1, random);
+    }
+
+    private static <E extends Comparable<E>> void sort3ways(E[] arr, int l, int r, Random random) {
+        if (l >= r) return;
+
+        // 生成[l,r]之间的随机索引
+        int p = l + random.nextInt(r - l + 1);
+        // 将随机到的标定点放在首位
+        swap(arr, l, p);
+
+        // 循环不变量 arr[l, lt] < v, arr[lt + 1, i - 1] == v, arr[gt, r] > v
+        // i = l + 1 表示从第二个元素开始循环，gt = r + 1 表示开始是个空区间
+        int lt = l, i = l + 1, gt = r + 1;
+        // i 不是每次都 ++ ，所以这里不用 for 循环，改用 while 循环
+        while (i < gt) {
+            if (arr[i].compareTo(arr[l]) < 0) {
+                lt++;
+                swap(arr, i, lt);
+                i++;
+            } else if (arr[i].compareTo(arr[l]) > 0) {
+                gt--;
+                swap(arr, i, gt);
+                // 这里 i 不用++，因为此时的 i 是从 gt 位置换过来的新值，还没有进行比较
+            } else if (arr[i].compareTo(arr[l]) == 0) {
+                i++;
+                // 不需要进行交换，相当于扩充了 arr[lt + 1, i - 1] 的区间
+                // 往下进行，即使当比 arr[l] 小的时候，扩容 arr[l, lt] < v ，交换过来的也是等于 v 的元素
+                // 只有当从 gt - 1 位置交换来的元素才需要判断
+            }
+        }
+        swap(arr, l, lt);
+        // 交换后，arr[l, lt - 1] < v，arr[lt, gt - 1] == v, arr[gt, r] > v
+
+        sort3ways(arr, l, lt - 1, random);
+        sort3ways(arr, gt, r, random);
+
+    }
+
     private static <E> void swap(E[] arr, int i, int j) {
         E temp = arr[i];
         arr[i] = arr[j];
@@ -126,19 +171,19 @@ public class QuickSort {
         Integer[] arr2 = Arrays.copyOf(arr, arr.length);
 
 //        SortingHelper.sortTest(MergeSort.class.getName(), "sort", arr2);
-        SortingHelper.sortTest(QuickSort.class.getName(), "sort", arr);
+        SortingHelper.sortTest(QuickSort.class.getName(), "sort3ways", arr);
         SortingHelper.sortTest(QuickSort.class.getName(), "sort2ways", arr2);
 
         arr = ArrayGenerator.generateOrderedArray(n);
         arr2 = Arrays.copyOf(arr, arr.length);
 
 //        SortingHelper.sortTest(MergeSort.class.getName(), "sort", arr);
-        SortingHelper.sortTest(QuickSort.class.getName(), "sort", arr);
+        SortingHelper.sortTest(QuickSort.class.getName(), "sort3ways", arr);
         SortingHelper.sortTest(QuickSort.class.getName(), "sort2ways", arr2);
 
         arr = ArrayGenerator.generateRandomArray(n, 1);
-        arr2 = Arrays.copyOf(arr, arr.length);
-        SortingHelper.sortTest(QuickSort.class.getName(), "sort2ways", arr2);
+//        arr2 = Arrays.copyOf(arr, arr.length);
+        SortingHelper.sortTest(QuickSort.class.getName(), "sort3ways", arr);
 //        SortingHelper.sortTest(QuickSort.class.getName(), "sort", arr);
 
     }
