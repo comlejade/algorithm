@@ -117,6 +117,7 @@ public class QuickSort {
 
     // 三路快速排序
     // 适合有大量重复元素的数组
+    // 对于元素完全一样的数组，时间复杂度是O(n)
     public static <E extends Comparable<E>> void sort3ways(E[] arr) {
         Random random = new Random();
         sort3ways(arr, 0, arr.length - 1, random);
