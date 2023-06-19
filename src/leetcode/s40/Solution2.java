@@ -3,52 +3,28 @@ package leetcode.s40;
 import java.util.Arrays;
 import java.util.Random;
 
-/**
- * 最小的k个元素
- */
-public class Solution {
+public class Solution2 {
     public int[] getLeastNumbers(int[] arr, int k) {
         if (k == 0) return new int[0];
         Random rnd = new Random();
-        selectK(arr, k - 1, rnd);
+        selectK(arr, 0, arr.length, k - 1, rnd);
         return Arrays.copyOf(arr, k);
     }
 
-    // 非递归写法
-    private int selectK(int[] arr, int k, Random rnd) {
-        int l = 0, r = arr.length - 1;
+    private int selectK(int[] arr, int l, int r, int k, Random rnd) {
+        int p = partition(arr, l, r - 1, rnd);
+        if (k == p) return arr[p];
 
-        while (l <= r) {
-            int p = partition(arr, l, r, rnd);
-
-            if (k == p) return arr[p];
-
-            if (k < p) {
-                r = p - 1;
-            } else {
-                l = p + 1;
-            }
-        }
-
-        throw new RuntimeException("No Solution");
-    }
-
-    // 递归写法
-    private int selectKR(int[] arr, int l, int r, int k, Random rnd) {
-        int p = partition(arr, l, r, rnd);
         if (k < p) {
-            return selectKR(arr, l, p - 1, k, rnd);
+            return selectK(arr, l, p - 1, k, rnd);
+        } else {
+            return selectK(arr, p + 1, r, k, rnd);
         }
-
-        if (k > p) {
-            return selectKR(arr, p + 1, r, k, rnd);
-        }
-
-        return arr[p];
     }
 
     private int partition(int[] arr, int l, int r, Random rnd) {
         int p = rnd.nextInt(r - l + 1) + l;
+
         swap(arr, l, p);
 
         int i = l + 1, j = r;
@@ -57,18 +33,20 @@ public class Solution {
                 i++;
             }
 
-            while (j >= i && arr[j] > arr[l]) {
+            while (i <= j && arr[j] > arr[l]) {
                 j--;
             }
 
-            if (i >= j) break;
+            if (i >= j) {
+                break;
+            }
 
             swap(arr, i, j);
             i++;
             j--;
         }
-
         swap(arr, l, j);
+
         return j;
     }
 
@@ -82,7 +60,7 @@ public class Solution {
         int[] arr = {0,1,2,1};
         int k = 3;
 
-        int[] res = new Solution().getLeastNumbers(arr, k);
+        int[] res = new Solution2().getLeastNumbers(arr, k);
 
         System.out.println(Arrays.toString(res));
     }
