@@ -98,6 +98,27 @@ public class BinarySearch {
         return l;
     }
 
+    // 用求解 >= target 的最小值的索引的方法，实现 search
+    public static <E extends Comparable<E>> int search3(E[] data, E target) {
+        int l = 0, r = data.length;
+        
+        while (l < r) {
+            int mid = l + (r - l) / 2;
+
+            if (data[mid].compareTo(target) < 0) {
+                l = mid + 1;
+            } else {
+                r = mid;
+            }
+        }
+        
+        // 因为这里要查找准确的值，所以只判断等于0的情况，如果不相等说明没有，直接返回-1
+        if (l < data.length && data[l].compareTo(target) == 0) {
+            return l;
+        }
+        return -1;
+    }
+
     // > target 返回最小索引值
     // == target 返回最大索引
     public static <E extends Comparable<E>> int ceil(E[] data, E target) {
@@ -114,7 +135,7 @@ public class BinarySearch {
 
     // > target 返回最小索引
     // == target 返回最小索引
-    public static <E extends Comparable<E>> int lowerCeil(E[] data, E target) {
+    public static <E extends Comparable<E>> int lower_ceil(E[] data, E target) {
         int l = 0, r = data.length;
 
         while (l < r) {
@@ -135,10 +156,60 @@ public class BinarySearch {
         return l;
     }
 
-    public static void main(String[] args){
-      Integer[] arr = {1,1,3,3,5,5};
+    // < target 取最大值索引
+    public static <E extends Comparable<E>> int lower(E[] data, E target) {
+
+        int l = - 1, r = data.length - 1;
+
+        while (l < r) {
+            // l 和 r 相邻时，可能会陷入死循环，比如 l = 0, r = 1
+            // m = 0 + (1 - 0) / 2 = 0
+            // arr[0] < arr[1]
+            // l = m = 0, 陷入死循环
+            // 解决方案：m = l + (r - l + 1) / 2 向上取整
+            int mid = l + (r - l + 1) / 2;
+
+            if (data[mid].compareTo(target) < 0) {
+                l = mid;
+            } else {
+                r = mid - 1;
+            }
+        }
+
+        return l;
+    }
+
+    // < target 返回最大值的索引
+    // == target 返回最小值的索引
+    public static <E extends Comparable<E>> int lower_floor(E[] data, E target) {
+        int l = lower(data, target);
+        if (l + 1 < data.length && data[l + 1].compareTo(target) == 0) {
+            return l + 1;
+        }
+        return l;
+    }
+
+    // <= target 返回最大索引
+    public static <E extends Comparable<E>> int upper_floor(E[] data, E target) {
+        int l = -1, r = data.length - 1;
+
+        while (l < r) {
+            int mid = l + (r - l + 1) / 2;
+
+            if (data[mid].compareTo(target) <= 0) {
+                l = mid;
+            } else {
+                r = mid - 1;
+            }
+        }
+
+        return l;
+    }
+
+    public static void main(String[] args) {
+      Integer[] arr = {1, 1, 3, 3, 5, 5};
       for(int i = 0; i <= 6; i++) {
-          System.out.print(BinarySearch.lowerCeil(arr, i) + " ");
+          System.out.print(BinarySearch.lower(arr, i) + " ");
       }
     }
 }
