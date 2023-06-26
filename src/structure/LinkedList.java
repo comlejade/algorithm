@@ -1,5 +1,8 @@
 package structure;
 
+/**
+ * 单向链表
+ */
 public class LinkedList<E> {
   private class Node {
     public E e;
@@ -145,6 +148,23 @@ public class LinkedList<E> {
 
   public E removeLast() {
     return remove(size - 1);
+  }
+
+  public void removeElement(E e) {
+    Node prev = dummyHead;
+    while (prev.next != null) {
+      if (prev.next.e.equals(e)) {
+        break;
+      }
+      prev = prev.next;
+    }
+    
+    if (prev.next != null) {
+      Node retNode = prev.next;
+      prev.next = retNode.next;
+      retNode.next = null;
+      size--;
+    }
   }
 
   @Override

@@ -2,6 +2,9 @@ package recursion;
 
 import javafx.util.Pair;
 
+/**
+ * 用递归的方式实现链表
+ */
 public class LinkedList<E> {
     private class Node {
         public E e;

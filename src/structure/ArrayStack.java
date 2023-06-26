@@ -1,5 +1,8 @@
 package structure;
 
+/**
+ * 数组实现栈
+ */
 public class ArrayStack<T> implements Stack<T> {
   Array<T> array;
 

@@ -1,5 +1,8 @@
 package structure;
 
+/**
+ * 链表实现队列
+ */
 public class LinkedListQueue<E> implements Queue<E> {
   private class Node {
     public E e;

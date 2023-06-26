@@ -261,13 +261,9 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
   // 删除二分搜索树的最小值
   public E removeMin() {
-    if (size == 0) {
-      throw new IllegalArgumentException("BST is empty");
-    }
-    
     E ret = minimum();
 
-
+    root = removeMin(root);
 
     return ret;
   }
@@ -275,7 +271,73 @@ public class BinarySearchTree<E extends Comparable<E>> {
   // 删除以node为根的二分搜索树的最小节点
   // 返回删除节点后新的二分搜索树的根
   private Node removeMin(Node node) {
-    
+    if (node.left == null) {
+      Node rightNode = node.right;
+      size--;
+      return rightNode;
+    }
+    node.left = removeMin(node.left);
+    return node;
+  }
+
+  // 删除二分搜索树的最大值
+  public E removeMax() {
+    E ret = maximum();
+    root = removeMax(root);
+    return ret;
+  }
+
+  private Node removeMax(Node node) {
+    if (node.right == null) {
+      Node leftNode = node.left;
+      size--;
+      return leftNode;
+    }
+    node.right = removeMax(node.right);
+    return node;
+  }
+
+  // 删除二分搜索树中指定的任意节点
+  public void remove(E e) {
+    root = remove(root, e);
+  }
+
+  // 删除二分搜索树中以Node为根值为e的节点
+  private Node remove(Node node, E e) {
+    if (node == null) {
+      return null;
+    }
+
+    // 待删除节点左子树为空
+    if (node.left == null) {
+      Node rightNode = node.right;
+      size--;
+      return rightNode;
+    }
+
+    // 待删除节点的右子树为空
+    if (node.right == null) {
+      Node leftNode = node.left;
+      size--;
+      return leftNode;
+    }
+
+    // 待删除节点左右子树都不为空
+    // 找到比待删除节点大的最小节点，即待删除节点右子树的最小节点
+    // 用这个节点顶替待删除节点的位置
+    Node successor = minimum(node.right);
+    // removeMin 在子树中找到最小值并删除
+    // 将右子树大小最接近要删除的元素的右子树指向 删除最新值后的node.right
+    successor.right = removeMin(node.right);
+    // size++;
+
+    // 将要删除的节点的右子树挂到 successor 上
+    successor.left = node.left;
+    // 将要删除的节点的左右子树删除
+    node.left = node.right = null;
+    // size--;
+    // 返回node被替代后新的节点
+    return successor;
   }
 
   @Override

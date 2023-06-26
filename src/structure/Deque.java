@@ -1,5 +1,7 @@
 package structure;
-
+/**
+ * 双端队列
+ */
 public class Deque<E> {
   private E[] data;
   private int front, tail;

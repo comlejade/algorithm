@@ -1,5 +1,8 @@
 package structure;
 
+/**
+ * 不使用size实现循环队列
+ */
 public class LoopQueue3<E> implements Queue<E> {
   private E[] data;
   private int front, tail;

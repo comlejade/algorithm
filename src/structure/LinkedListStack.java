@@ -1,5 +1,8 @@
 package structure;
 
+/**
+ * 单项链表实现栈
+ */
 public class LinkedListStack<E> implements Stack<E> {
   private LinkedList<E> list;
 

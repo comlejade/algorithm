@@ -1,5 +1,8 @@
 package structure;
 
+/**
+ * 数组实现队列
+ */
 public class ArrayQueue<E> implements Queue<E> {
   private Array<E> array;
 
