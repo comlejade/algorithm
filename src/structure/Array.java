@@ -45,6 +45,21 @@ public class Array<T> {
   }
 
   /**
+   * 交换两个元素
+   * @param i
+   * @param j
+   */
+  public void swap(int i, int j) {
+    if (i < 0 || i >= size || j < 0 || j >= size) {
+      throw new IllegalArgumentException("Index is illegal");
+    }
+
+    T t = data[i];
+    data[i] = data[j];
+    data[j] = t;
+  }
+
+  /**
    * 向末位添加
    * @param e
    */

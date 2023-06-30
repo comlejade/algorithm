@@ -1,4 +1,6 @@
-package structure;
+package structure.stack;
+
+import structure.LinkedList;
 
 /**
  * 单项链表实现栈

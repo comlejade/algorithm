@@ -1,4 +1,6 @@
-package structure;
+package structure.stack;
+
+import structure.Array;
 
 /**
  * 数组实现栈

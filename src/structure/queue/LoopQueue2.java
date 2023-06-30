@@ -1,33 +1,35 @@
-package structure;
+package structure.queue;
 
-/**
- * 不使用size实现循环队列
- */
-public class LoopQueue3<E> implements Queue<E> {
+// 使用size，不浪费一个空间
+
+public class LoopQueue2<E> implements Queue<E> {
   private E[] data;
   private int front, tail;
+  private int size;
 
-  public LoopQueue3(int capacity) {
-    data = (E[]) new Object[capacity + 1];
+  public LoopQueue2(int capacity) {
+    data = (E[]) new Object[capacity];
     front = 0;
     tail = 0;
+    size = 0;
   }
 
-  public LoopQueue3() {
+  public LoopQueue2() {
     this(10);
   }
 
   public int getCapacity() {
-    return data.length - 1;
+    return data.length;
   }
 
   @Override
   public void enqueue(E e) {
-    if ((tail + 1) % data.length == front) {
+    if (size + 1 == data.length) {
       resize(getCapacity() * 2);
     }
     data[tail] = e;
     tail = (tail + 1) % data.length;
+    size++;
   }
 
   @Override
@@ -38,8 +40,8 @@ public class LoopQueue3<E> implements Queue<E> {
     E ret = data[front];
     data[front] = null;
     front = (front + 1) % data.length;
-    // System.out.println("dequeue size = " + getSize() + ", capacity = " + getCapacity());
-    if (getSize() == getCapacity() / 4 && getCapacity() != 0) {
+    size--;
+    if (size == getCapacity() / 4) {
       resize(getCapacity() / 2);
     }
     return ret;
@@ -55,37 +57,32 @@ public class LoopQueue3<E> implements Queue<E> {
 
   @Override
   public int getSize() {
-    if (tail >= front) {
-      return tail - front;
-    } else {
-      return data.length + tail - front;
-    }
+    return size;
   }
 
   @Override
   public boolean isEmpty() {
-    return front == tail;
+    return size == 0;
   }
 
   public void resize(int capacity) {
-    E[] newData = (E[]) new Object[capacity + 1];
-    int sz = getSize();
-    for (int i = 0; i < sz ; i++) {
+    E[] newData = (E[]) new Object[capacity];
+    for (int i = 0; i < size; i++) {
       newData[i] = data[(i + front) % data.length];
     }
     data = newData;
     front = 0;
-    tail = sz;
+    tail = size;
   }
-  
+
   @Override
   public String toString() {
     StringBuilder res = new StringBuilder();
-    res.append(String.format("Queue: size = %d, capacity = %d\n", getSize(), getCapacity()));
+    res.append(String.format("Queue: size= %d, capacity = %d\n", size, getCapacity()));
     res.append("front [");
-    for (int i = front; i != tail; i = (i + 1) % data.length) {
-      res.append(data[i]);
-      if ((i + 1) % data.length != tail) {
+    for (int i = front; i < size; i++) {
+      res.append(data[(i + front) % data.length]);
+      if ((i + front + 1) % data.length != tail) {
         res.append(", ");
       }
     }
@@ -94,7 +91,7 @@ public class LoopQueue3<E> implements Queue<E> {
   }
 
   public static void main(String[] args) {
-    LoopQueue3<Integer> queue = new LoopQueue3<>();
+    LoopQueue2<Integer> queue = new LoopQueue2<>();
     for (int i = 0; i < 10; i++) {
       queue.enqueue(i);
       System.out.println(queue);

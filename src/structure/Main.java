@@ -1,5 +1,10 @@
 package structure;
 
+import structure.queue.Queue;
+import structure.stack.ArrayStack;
+import structure.stack.LinkedListStack;
+import structure.stack.Stack;
+
 import java.util.Random;
 
 public class Main {

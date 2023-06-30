@@ -1,4 +1,6 @@
-package structure;
+package structure.queue;
+
+import structure.Array;
 
 /**
  * 数组实现队列

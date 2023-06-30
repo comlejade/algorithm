@@ -1,4 +1,4 @@
-package structure;
+package structure.map;
 
 public interface Map<K, V> {
   void add(K key, V value);

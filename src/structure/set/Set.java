@@ -1,4 +1,4 @@
-package structure;
+package structure.set;
 
 public interface Set<E> {
   void add(E e);

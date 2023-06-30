@@ -1,4 +1,4 @@
-package structure;
+package structure.queue;
 
 /**
  * 链表实现队列

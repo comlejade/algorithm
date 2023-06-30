@@ -1,4 +1,4 @@
-package structure;
+package structure.queue;
 
 public interface Queue<E> {
   void enqueue(E e);

@@ -1,7 +1,8 @@
-package structure;
+package structure.set;
 
 import java.util.ArrayList;
 
+import structure.LinkedList;
 import utils.FileOpreation;
 
 /**

@@ -1,4 +1,4 @@
-package structure;
+package structure.queue;
 /**
  * 双端队列
  */
