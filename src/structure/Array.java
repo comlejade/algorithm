@@ -20,6 +20,15 @@ public class Array<T> {
     this(10);
   }
 
+  // 根据传入的数组构造一个动态数组
+  public Array(T[] arr) {
+    data = (T[]) new Object[arr.length];
+    for (int i = 0; i < arr.length; i++) {
+      data[i] = arr[i];
+    }
+    size = arr.length;
+  }
+
   /**
    * 获取数组元素个数
    * @return
