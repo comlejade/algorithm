@@ -1,4 +1,4 @@
-package leetcode.s349;
+package leetcode.lc349;
 
 import java.util.ArrayList;
 import java.util.TreeSet;

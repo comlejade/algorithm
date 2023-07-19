@@ -1,19 +1,12 @@
-package leetcode.s203;
+package leetcode.lc203;
 
 import leetcode.ListNode;
 
-public class Solution1 {
+public class Solution2 {
   public ListNode removeElements(ListNode head, int val) {
-    // 不使用头部虚拟节点
-    // 那么就需要先处理头部节点，再处理后面的节点
-    while (head != null && head.val == val) {
-      ListNode delNode = head;
-      head = delNode.next;
-      delNode.next = null;
-    }
-    if (head == null) return null;
-    // 处理后面的节点
-    ListNode prev = head;
+    // 使用头部虚拟节点
+    ListNode dummyHead = new ListNode(0, head);
+    ListNode prev = dummyHead;
     while (prev.next != null) {
       if (prev.next.val == val) {
         ListNode delNode = prev.next;
@@ -23,8 +16,7 @@ public class Solution1 {
         prev = prev.next;
       }
     }
-
-    return head;
+    return dummyHead.next;
   }
 
   public static void main(String[] args) {

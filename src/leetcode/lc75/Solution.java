@@ -1,4 +1,4 @@
-package leetcode.s75;
+package leetcode.lc75;
 
 import java.util.Random;
 

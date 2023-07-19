@@ -1,4 +1,4 @@
-package leetcode.s40;
+package leetcode.lc40;
 
 import java.util.Arrays;
 import java.util.Random;

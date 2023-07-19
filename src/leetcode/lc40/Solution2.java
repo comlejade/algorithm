@@ -1,30 +1,30 @@
-package leetcode.s251;
+package leetcode.lc40;
 
+import java.util.Arrays;
 import java.util.Random;
 
-public class Solution {
-    public int findKthLargest(int[] nums, int k) {
+public class Solution2 {
+    public int[] getLeastNumbers(int[] arr, int k) {
+        if (k == 0) return new int[0];
         Random rnd = new Random();
-        return selectK(nums, 0, nums.length - 1, nums.length - k, rnd);
+        selectK(arr, 0, arr.length, k - 1, rnd);
+        return Arrays.copyOf(arr, k);
     }
 
     private int selectK(int[] arr, int l, int r, int k, Random rnd) {
-        int p = partition(arr, l, r, rnd);
-
-
-        if (k > p) {
-            return selectK(arr, p + 1, r, k, rnd);
-        }
+        int p = partition(arr, l, r - 1, rnd);
+        if (k == p) return arr[p];
 
         if (k < p) {
             return selectK(arr, l, p - 1, k, rnd);
+        } else {
+            return selectK(arr, p + 1, r, k, rnd);
         }
-
-        return arr[p];
     }
 
     private int partition(int[] arr, int l, int r, Random rnd) {
         int p = rnd.nextInt(r - l + 1) + l;
+
         swap(arr, l, p);
 
         int i = l + 1, j = r;
@@ -37,17 +37,18 @@ public class Solution {
                 j--;
             }
 
-            if (i >= j) break;
+            if (i >= j) {
+                break;
+            }
 
             swap(arr, i, j);
             i++;
             j--;
         }
-
         swap(arr, l, j);
+
         return j;
     }
-
 
     private void swap(int[] arr, int i, int j) {
         int t = arr[i];
@@ -56,8 +57,11 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        int[] nums = {12,34};
-        int k = 1;
-        System.out.println(new Solution().findKthLargest(nums, k));
+        int[] arr = {0,1,2,1};
+        int k = 3;
+
+        int[] res = new Solution2().getLeastNumbers(arr, k);
+
+        System.out.println(Arrays.toString(res));
     }
 }

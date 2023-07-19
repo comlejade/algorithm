@@ -1,4 +1,4 @@
-package leetcode.s350;
+package leetcode.lc350;
 
 import java.util.ArrayList;
 import java.util.TreeMap;

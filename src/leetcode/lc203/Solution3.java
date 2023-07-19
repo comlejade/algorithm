@@ -1,4 +1,4 @@
-package leetcode.s203;
+package leetcode.lc203;
 
 import leetcode.ListNode;
 

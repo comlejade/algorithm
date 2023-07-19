@@ -1,4 +1,4 @@
-package leetcode.s1011;
+package leetcode.lc1011;
 
 import java.util.Arrays;
 
