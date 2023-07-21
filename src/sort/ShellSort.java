@@ -21,6 +21,32 @@ public class ShellSort {
             for (int start = 0; start < h; start++) {
                 // 遍历组内的元素
                 // 并对于组内的元素进行插入排序
+                // 对 data[start, start + h, start + 2h, start + 3h...] 进行插入排序
+                for (int i = start + h; i < data.length; i += h) {
+                    E t = data[i];
+                    int j;
+                    for (j = i; j - h >= 0 && t.compareTo(data[j -h]) < 0; j -= h) {
+                        // 如果data[j] 比 data[j-h]小，那么就将元素向后挪，给t腾位置
+                        data[j] = data[j - h];
+                    }
+                    data[j] = t;
+                }
+            }
+
+            h = h / 2;
+        }
+    }
+
+    public static <E extends Comparable<E>> void sort2(E[] data) {
+        // 元素间隔
+        int h = data.length / 2;
+
+        while (h >= 1) {
+            // 将数据分组，遍历每一组
+            for (int start = 0; start < h; start++) {
+                // 遍历组内的元素
+                // 并对于组内的元素进行插入排序
+                // 对 data[start, start + h, start + 2h, start + 3h...] 进行插入排序
                 for (int i = start + h; i < data.length; i += h) {
                     E t = data[i];
                     int j;
