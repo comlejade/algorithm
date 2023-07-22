@@ -9,6 +9,7 @@ import java.util.Arrays;
  * 数组逐步变得有序
  * 时间复杂度在数据规模小的时候，与O(nlogn)差不多
  * 在 O(nlogn) - O(n^2) 之间
+ * 不稳定
  */
 public class ShellSort {
     private ShellSort() {}

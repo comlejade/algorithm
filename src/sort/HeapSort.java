@@ -9,6 +9,7 @@ import java.util.Arrays;
 /**
  * 堆排序
  * 时间复杂度O(nlogn)
+ * 不稳定
  */
 public class HeapSort {
     private HeapSort() {}

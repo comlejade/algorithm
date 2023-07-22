@@ -5,6 +5,7 @@ import utils.SortingHelper;
 
 /**
  * 选择排序的时间复杂度是O(n^2)
+ * 不稳定，排序后不能保证相等的元素相对位置不变
  */
 public class SelectionSort {
   private SelectionSort() {}

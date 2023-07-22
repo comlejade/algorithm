@@ -11,6 +11,7 @@ import java.util.Random;
  * 最坏复杂度 O(n^2)，但是概率非常低
  * 是一个随机算法
  * 数学期望的角度看是平分，层数的期望值 O(nlogn)， 复杂度的期望值也是 O(nlogn)
+ * 不稳定
  */
 public class QuickSort {
     private QuickSort() {}

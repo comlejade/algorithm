@@ -3,6 +3,7 @@ package sort;
 /**
  * 插入排序的总体时间复杂度是O(n^2)
  * 对完全有序的数组是O(n)
+ * 稳定的算法
  */
 public class InsertionSort {
   private InsertionSort() {}

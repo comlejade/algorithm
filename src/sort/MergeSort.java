@@ -8,6 +8,7 @@ import java.util.Arrays;
 /**
  * 归并排序整体的时间复杂度是O(n * logn)
  * 对于完全有序的数组，复杂度是O(n)
+ * 稳定
  */
 public class MergeSort {
     private MergeSort() {}

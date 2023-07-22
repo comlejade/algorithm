@@ -3,6 +3,9 @@ package sort;
 import utils.ArrayGenerator;
 import utils.SortingHelper;
 
+/**
+ * 稳定
+ */
 public class BubbleSort {
     private BubbleSort() {}
 
